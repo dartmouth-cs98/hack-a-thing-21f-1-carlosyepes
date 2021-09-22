@@ -8,6 +8,7 @@ import 'src/github_gql/github_queries.req.gql.dart';
 
 import 'github_oauth_credentials.dart';
 import 'src/github_login.dart';
+import 'package:window_to_front/window_to_front.dart'; // Add this,
 
 void main() {
   runApp(const MyApp());
@@ -56,6 +57,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GithubLoginWidget(
       builder: (context, httpClient) {
+        WindowToFront.activate();
         final link = HttpLink(
           'https://api.github.com/graphql',
           httpClient: httpClient,

@@ -36,6 +36,8 @@ dependencies:
   http: ^0.13.1        
   oauth2: ^2.0.0       
   url_launcher: ^6.0.2 
+  window_to_front:             # Add this dependency, from here
+    path: '../window_to_front' # to here.
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
