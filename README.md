@@ -21,6 +21,8 @@ Helped me also learn more about git, Github as well as GraphQL
 
 Kind of reminds me of npm a bit with the, or the `flutter do this` and `flutter do that`
 
+Learned more about flutter, as well as the Dart language. I also really like that its so simple to use Material.io
+
 ## Authors
 
 Carlos Yepes

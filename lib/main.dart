@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:gql_exec/gql_exec.dart';
-import 'package:gql_link/gql_link.dart';
-import 'package:gql_http_link/gql_http_link.dart';
-import 'src/github_gql/github_queries.data.gql.dart';
-import 'src/github_gql/github_queries.req.gql.dart';
-
 import 'github_oauth_credentials.dart';
 import 'src/github_login.dart';
+import 'src/github_summary.dart';
 import 'package:window_to_front/window_to_front.dart'; // Add this,
 
 void main() {
@@ -33,6 +28,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.amber,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -41,43 +37,18 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return GithubLoginWidget(
-      builder: (context, httpClient) {
+      builder: (context, client) {
         WindowToFront.activate();
-        final link = HttpLink(
-          'https://api.github.com/graphql',
-          httpClient: httpClient,
-        );
-        return FutureBuilder<GViewerDetailData_viewer>(
-          future: viewerDetail(link),
-          builder: (context, snapshot) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(title),
-              ),
-              body: Center(
-                child: Text(
-                  snapshot.hasData
-                      ? 'Hello ${snapshot.data!.login}!'
-                      : 'Retrieving viewer login details...',
-                ),
-              ),
-            );
-          },
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+          ),
+          body: GitHubSummary(client: client),
         );
       },
       githubClientId: githubClientId,
@@ -85,33 +56,81 @@ class MyHomePage extends StatelessWidget {
       githubScopes: githubScopes,
     );
   }
-  // @override
-  // State<MyHomePage> createState() => _MyHomePageState();
 }
 
-Future<GViewerDetailData_viewer> viewerDetail(Link link) async {
-  final req = GViewerDetail((b) => b);
-  final result = await link
-      .request(Request(
-        operation: req.operation,
-        variables: req.vars.toJson(),
-      ))
-      .first;
-  final errors = result.errors;
-  if (errors != null && errors.isNotEmpty) {
-    throw QueryException(errors);
-  }
-  return GViewerDetailData.fromJson(result.data!)!.viewer;
-}
+// class MyHomePage extends StatelessWidget {
+//   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-class QueryException implements Exception {
-  QueryException(this.errors);
-  List<GraphQLError> errors;
-  @override
-  String toString() {
-    return 'Query Exception: ${errors.map((err) => '$err').join(',')}';
-  }
-}
+//   // This widget is the home page of your application. It is stateful, meaning
+//   // that it has a State object (defined below) that contains fields that affect
+//   // how it looks.
+
+//   // This class is the configuration for the state. It holds the values (in this
+//   // case the title) provided by the parent (in this case the App widget) and
+//   // used by the build method of the State. Fields in a Widget subclass are
+//   // always marked "final".
+
+//   final String title;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GithubLoginWidget(
+//       builder: (context, httpClient) {
+//         WindowToFront.activate();
+//         final link = HttpLink(
+//           'https://api.github.com/graphql',
+//           httpClient: httpClient,
+//         );
+//         return FutureBuilder<GViewerDetailData_viewer>(
+//           future: viewerDetail(link),
+//           builder: (context, snapshot) {
+//             return Scaffold(
+//               appBar: AppBar(
+//                 title: Text(title),
+//               ),
+//               body: Center(
+//                 child: Text(
+//                   snapshot.hasData
+//                       ? 'Hello ${snapshot.data!.login}!'
+//                       : 'Retrieving viewer login details...',
+//                 ),
+//               ),
+//             );
+//           },
+//         );
+//       },
+//       githubClientId: githubClientId,
+//       githubClientSecret: githubClientSecret,
+//       githubScopes: githubScopes,
+//     );
+//   }
+//   // @override
+//   // State<MyHomePage> createState() => _MyHomePageState();
+// }
+
+// Future<GViewerDetailData_viewer> viewerDetail(Link link) async {
+//   final req = GViewerDetail((b) => b);
+//   final result = await link
+//       .request(Request(
+//         operation: req.operation,
+//         variables: req.vars.toJson(),
+//       ))
+//       .first;
+//   final errors = result.errors;
+//   if (errors != null && errors.isNotEmpty) {
+//     throw QueryException(errors);
+//   }
+//   return GViewerDetailData.fromJson(result.data!)!.viewer;
+// }
+
+// class QueryException implements Exception {
+//   QueryException(this.errors);
+//   List<GraphQLError> errors;
+//   @override
+//   String toString() {
+//     return 'Query Exception: ${errors.map((err) => '$err').join(',')}';
+//   }
+// }
 
 // class _MyHomePageState extends State<MyHomePage> {
 //   int _counter = 0;
