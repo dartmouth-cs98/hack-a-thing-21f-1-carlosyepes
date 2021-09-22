@@ -29,9 +29,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.1        # Add this line,
-  oauth2: ^2.0.0       # and this line,
-  url_launcher: ^6.0.2 # and this one too.
+  gql: ^0.13.0-0          
+  gql_exec: ^0.3.0-0      
+  gql_link: ^0.4.0-0      
+  gql_http_link: ^0.4.0-0 
+  http: ^0.13.1        
+  oauth2: ^2.0.0       
+  url_launcher: ^6.0.2 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,7 +44,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner: ^1.10.0   # Add this line,
+  gql_build: ^0.2.0-0     # and this one.
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

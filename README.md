@@ -3,23 +3,28 @@
 
 ## What you built? 
 
-TODO: Short description of what you attempted to build
+So here I followed a Flutter tutorial to build a Windows Desktop app.
+I've always been interested in building desktop apps, so I gavce Flutter a whirl. I initially wanted to try somethin like a RESTful app and doing something with genomics/cell data, and while I was able to find data I wasn't really able to find any API's (the *cell* consistently gave me Excel results), or maybe I didn't look in the right places. I think that's something I'd give a whirl to later.
 
 Include some screenshots.
 [How?](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
 
 ## Who Did What?
 
-TODO: who worked on what part?
+Worked by myself.
 
 ## What you learned
 
-TODO: what worked / what didn't work
+I had a lot of trouble setting up Android tools, good lesson in realizing if somethin says its obsolete, it probably is LOL.
+
+Helped me also learn more about git, Github as well as GraphQL
+
+Kind of reminds me of npm a bit with the, or the `flutter do this` and `flutter do that`
 
 ## Authors
 
-TODO: list of authors
+Carlos Yepes
 
 ## Acknowledgments
 
-TODO: cite any tutorials followed here
+[Flutter Desktop Application](https://codelabs.developers.google.com/codelabs/flutter-github-graphql-client?hl=en&continue=https%3A%2F%2Fcodelabs.developers.google.com%2F)
