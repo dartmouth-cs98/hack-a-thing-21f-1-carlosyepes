@@ -6,8 +6,11 @@
 So here I followed a Flutter tutorial to build a Windows Desktop app.
 I've always been interested in building desktop apps, so I gavce Flutter a whirl. I initially wanted to try somethin like a RESTful app and doing something with genomics/cell data, and while I was able to find data I wasn't really able to find any API's (the *cell* consistently gave me Excel results), or maybe I didn't look in the right places. I think that's something I'd give a whirl to later.
 
-Include some screenshots.
-[How?](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
+[Result for first couple of steps](./img/step2.png)
+
+[Result for last step](./img/finalStep.png)
+
+Looks cool!
 
 ## Who Did What?
 
